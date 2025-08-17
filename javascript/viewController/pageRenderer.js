@@ -1,14 +1,13 @@
 import { semesterAction } from "../models/semesterAction.js";
-const mainBody = document.querySelector('.mainClass');
+const mainBody = document.querySelector(".mainClass");
 const processA = false;
 
-
-export const renderMessage = (message='please wait.......')=>{
-    mainBody.innerHTML=``;
-    mainBody.innerHTML = `<div class='message'>${message}</div>`;
-}
+export const renderMessage = (message = "please wait.......") => {
+  mainBody.innerHTML = ``;
+  mainBody.innerHTML = `<div class='message'>${message}</div>`;
+};
 export const renderHomepage = () => {
-    const html = `
+  const html = `
     <p style="font-family: Arial, sans-serif; color: #1E3A8A; text-align: center; 
             background-color: #E0E7FF; padding: 20px; border-radius: 12px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 900px; margin: 40px auto; line-height: 1.6;">
@@ -19,7 +18,9 @@ export const renderHomepage = () => {
 </p>
 
     <div class="cardCollection">
-        ${[1, 2, 3, 4, 5, 6, 7, 8].map(val => `
+        ${[1, 2, 3, 4, 5, 6, 7, 8]
+          .map(
+            (val) => `
             <div class="mainCard">
                 <p class="semTitle">Semester ${val}</p>
                 <div class="subSemEdit">
@@ -28,45 +29,45 @@ export const renderHomepage = () => {
                     <p data-id="syllabus ${val}">Syllabus</p>
                 </div>
             </div>
-        `).join('')}
+        `
+          )
+          .join("")}
     </div>
     `;
-    
-    mainBody.innerHTML = html;
+
+  mainBody.innerHTML = html;
 };
 
 //LISTENER FOR HOMEPAGE
-mainBody.addEventListener('click',async (e)=>{
-    const route = e.target.getAttribute('data-id')
-    if(route){
-        mainBody.innerHTML=``;
-        const data = route.split(' ');
-        location.hash=`#${data[0]}-${data[1]}-semester`
-        await renderSemSpecific(data);
-        return;
-    }
-})
+mainBody.addEventListener("click", async (e) => {
+  const route = e.target.getAttribute("data-id");
+  if (route) {
+    mainBody.innerHTML = ``;
+    const data = route.split(" ");
+    location.hash = `#${data[0]}-${data[1]}-semester`;
+    await renderSemSpecific(data);
+    return;
+  }
+});
 
+//RENDER THE SEMESTER SPECIFIC DATA ACTUALLY !
+const renderSemSpecific = async (data) => {
+  try {
+    const [location, sem] = data;
+    renderMessage();
+    const dataSpecific = await semesterAction(sem);
+    console.log(dataSpecific);
+    console.log(dataSpecific[location]);
+    mainBody.innerHTML = "data is " + location + " and from semester" + sem;
+    renderDataList(dataSpecific[location]);
+    return;
+  } catch (err) {
+    renderMessage("some error occured");
+  }
+};
 
-//RENDER THE SEMESTER SPECIFIC DATA ACTUALLY ! 
-const renderSemSpecific = async(data)=>{
-    try{
-        const[location,sem]=data;
-        renderMessage();
-        const dataSpecific = await semesterAction(sem);
-        console.log(dataSpecific);
-        console.log(dataSpecific[location]);
-        mainBody.innerHTML = 'data is '+location+' and from semester'+sem;
-        renderDataList(dataSpecific[location]);
-        return;
-    }catch(err){
-        renderMessage('some error occured');
-    }
-}
-
-
-export const renderSemester = async (semester)=>{
-try{
+export const renderSemester = async (semester) => {
+  try {
     const sem = +location.hash.slice(1);
     renderMessage();
     const semester = await semesterAction(sem);
@@ -75,18 +76,16 @@ try{
     console.log(note);
     const html = `<a href = '#homepage'>Visit Homepage</a> <p>and you are in ${location.hash} the json is : ${note} </p>`;
     return;
-}
-
-catch(err){
-console.log(err);
-renderMessage('some error occured');
-}
-}
+  } catch (err) {
+    console.log(err);
+    renderMessage("some error occured");
+  }
+};
 
 //ADMIN
 export const renderAdmin = async () => {
-    // Render login form first
-    const adminLogin = `
+  // Render login form first
+  const adminLogin = `
     <div class="login-box">
         <h2>Admin Login</h2>
         <input class="username" placeholder="Username">
@@ -94,24 +93,25 @@ export const renderAdmin = async () => {
         <button class="verifyL">Login</button>
         <div id="message"></div>
     </div>`;
-    
-    mainBody.innerHTML = adminLogin;
 
-    document.querySelector('.verifyL').addEventListener('click', () => {
-        const passwordInput = document.getElementById('password');
-        const messageDiv = document.getElementById('message');
+  mainBody.innerHTML = adminLogin;
 
-        if (!passwordInput) return;
+  document.querySelector(".verifyL").addEventListener("click", () => {
+    const passwordInput = document.getElementById("password");
+    const messageDiv = document.getElementById("message");
 
-        const enteredPassword = passwordInput.value;
+    if (!passwordInput) return;
 
-        if (enteredPassword !== 'abcdefg') {
-            if (messageDiv) messageDiv.textContent = '❌ Either Username Or Password is wrong!';
-            return;
-        }
+    const enteredPassword = passwordInput.value;
 
-        // Password correct, render admin upload + delete form
-        const html = `
+    if (enteredPassword !== "abcdefg") {
+      if (messageDiv)
+        messageDiv.textContent = "❌ Either Username Or Password is wrong!";
+      return;
+    }
+
+    // Password correct, render admin upload + delete form
+    const html = `
         <div class="admin-container">
             <h2>Admin Panel</h2>
 
@@ -139,7 +139,9 @@ export const renderAdmin = async () => {
                     <label for="semester">Semester</label>
                     <select id="semester" name="semester" required>
                         <option value="">Select semester</option>
-                        ${[1,2,3,4,5,6,7,8].map(s => `<option value="${s}">${s}</option>`).join('')}
+                        ${[1, 2, 3, 4, 5, 6, 7, 8]
+                          .map((s) => `<option value="${s}">${s}</option>`)
+                          .join("")}
                     </select>
 
                     <label for="uploadedBy">Uploaded By</label>
@@ -165,7 +167,9 @@ export const renderAdmin = async () => {
                     <label for="deleteSemester">Semester</label>
                     <select id="deleteSemester" name="deleteSemester" required>
                         <option value="">Select semester</option>
-                        ${[1,2,3,4,5,6,7,8].map(s => `<option value="${s}">${s}</option>`).join('')}
+                        ${[1, 2, 3, 4, 5, 6, 7, 8]
+                          .map((s) => `<option value="${s}">${s}</option>`)
+                          .join("")}
                     </select>
 
                     <label for="deleteKey">Index / Key</label>
@@ -178,62 +182,76 @@ export const renderAdmin = async () => {
         </div>
         `;
 
-        mainBody.innerHTML = html;
+    mainBody.innerHTML = html;
 
-        // Upload listener
-        const uploadForm = document.getElementById('uploadForm');
-        if (uploadForm) {
-            uploadForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const data = {
-                    type: document.getElementById('type').value,
-                    name: document.getElementById('name').value,
-                    drivepath: document.getElementById('drivepath').value,
-                    year: document.getElementById('year').value,
-                    semester: document.getElementById('semester').value,
-                    uploadedBy: document.getElementById('uploadedBy').value,
-                    uploadedAt: new Date().toISOString()
-                };
-                await semesterAction(+data.semester, { action: "upload", array: data.type, data: data });
-                document.getElementById('uploadOutput').textContent = '✅ DATA UPLOADED SUCCESSFULLY!\n' + JSON.stringify(data, null, 4);
-            });
-        }
+    // Upload listener
+    const uploadForm = document.getElementById("uploadForm");
+    if (uploadForm) {
+      uploadForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const data = {
+          type: document.getElementById("type").value,
+          name: document.getElementById("name").value,
+          drivepath: document.getElementById("drivepath").value,
+          year: document.getElementById("year").value,
+          semester: document.getElementById("semester").value,
+          uploadedBy: document.getElementById("uploadedBy").value,
+          uploadedAt: new Date().toISOString(),
+        };
+        await semesterAction(+data.semester, {
+          action: "upload",
+          array: data.type,
+          data: data,
+        });
+        document.getElementById("uploadOutput").textContent =
+          "✅ DATA UPLOADED SUCCESSFULLY!\n" + JSON.stringify(data, null, 4);
+      });
+    }
 
-        // Delete listener
-        const deleteForm = document.getElementById('deleteForm');
-        if (deleteForm) {
-            deleteForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const deleteType = document.getElementById('deleteType').value;
-                const deleteSemester = +document.getElementById('deleteSemester').value;
-                const deleteKey = +document.getElementById('deleteKey').value;
+    // Delete listener
+    const deleteForm = document.getElementById("deleteForm");
+    if (deleteForm) {
+      deleteForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const deleteType = document.getElementById("deleteType").value;
+        const deleteSemester = +document.getElementById("deleteSemester").value;
+        const deleteKey = +document.getElementById("deleteKey").value;
 
-                await semesterAction(deleteSemester, { action: "delete", array: deleteType, deleteKey: deleteKey });
-                document.getElementById('deleteOutput').textContent = `✅ Deleted ${deleteType} at index ${deleteKey} in semester ${deleteSemester}`;
-            });
-        }
-    });
+        await semesterAction(deleteSemester, {
+          action: "delete",
+          array: deleteType,
+          deleteKey: deleteKey,
+        });
+        document.getElementById(
+          "deleteOutput"
+        ).textContent = `✅ Deleted ${deleteType} at index ${deleteKey} in semester ${deleteSemester}`;
+      });
+    }
+  });
 };
 
-
-//RENDERING THE CARD OF SEMESTER ACTION RESULTS 
+//RENDERING THE CARD OF SEMESTER ACTION RESULTS
 function renderDataList(dataArray) {
-    console.log(dataArray);
-    // Sort by uploadedAt (newest first)
-    const sortedData = dataArray.sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+  console.log(dataArray);
+  // Sort by uploadedAt (newest first)
+  const sortedData = dataArray.sort(
+    (a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt)
+  );
 
-    if(sortedData.length<1){
-        mainBody.innerHTML="<div class='message'>Sorry but admin has not uploaded any data!</div>";
-        return;
-    }
-    mainBody.innerHTML = sortedData.map((item,idx) => {
-        // Convert Google Drive share link to embed link
-        let embedLink = item.drivepath;
-        if (embedLink.includes("view")) {
-            embedLink = embedLink.replace("view", "preview");
-        }
+  if (sortedData.length < 1) {
+    mainBody.innerHTML =
+      "<div class='message'>Sorry but admin has not uploaded any data!</div>";
+    return;
+  }
+  mainBody.innerHTML = sortedData
+    .map((item, idx) => {
+      // Convert Google Drive share link to embed link
+      let embedLink = item.drivepath;
+      if (embedLink.includes("view")) {
+        embedLink = embedLink.replace("view", "preview");
+      }
 
-        return `
+      return `
             <div class="data-card">
                 <h3>${item.name}</h3>
                 <div class="data-preview">
@@ -241,23 +259,25 @@ function renderDataList(dataArray) {
                 </div>
                 <div class="data-content">
                     <strong>${item.name}</strong>
-                    <span style="color:purple">           Showing ${idx+1} of ${sortedData.length} results.</span>
+                    <span style="color:purple">           Showing ${
+                      idx + 1
+                    } of ${sortedData.length} results.</span>
                     <div class="data-meta">
                         <span>📂 ${item.type}</span>
                         <span>🎓 Sem: ${item.semester}</span>
                         <span>📅 ${item.year}</span>
-                        <span>👤 ${item.uploadedBy}</span>
                     </div>
                 </div>
             </div>
         `;
-    }).join('');
+    })
+    .join("");
 }
 
 // Example usage:
-export const renderAbout = ()=>{
-    mainBody.innerHTML=``;
-    mainBody.innerHTML = `<section id="about" style="padding: 40px; background-color: #f5f5f5; font-family: Arial, sans-serif;">
+export const renderAbout = () => {
+  mainBody.innerHTML = ``;
+  mainBody.innerHTML = `<section id="about" style="padding: 40px; background-color: #f5f5f5; font-family: Arial, sans-serif;">
     <h2 style="text-align: center; color: #333;">About BICTEHUB</h2>
     <p style="max-width: 800px; margin: 20px auto; font-size: 1rem; line-height: 1.6; color: #555;">
         BICTEHUB is a centralized platform designed for students of BICTE to access academic resources easily. 
@@ -270,12 +290,12 @@ export const renderAbout = ()=>{
         students of <strong>BICTE 7th Semester</strong>, with the aim of simplifying access to academic materials 
         and supporting student success.
     </p>
-</section>`
-}
+</section>`;
+};
 
-export const renderTeams = ()=>{
-    mainBody.innerHTML='';
-    mainBody.innerHTML=`<section id="team" style="padding: 40px; background-color: #fff; font-family: Arial, sans-serif;">
+export const renderTeams = () => {
+  mainBody.innerHTML = "";
+  mainBody.innerHTML = `<section id="team" style="padding: 40px; background-color: #fff; font-family: Arial, sans-serif;">
     <h2 style="text-align: center; color: #333; margin-bottom: 40px;">Our Team</h2>
     <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px;">
 
@@ -300,6 +320,6 @@ export const renderTeams = ()=>{
     </div>
 </section>
 
-`
-}
+`;
+};
 // Render on page load
