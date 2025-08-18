@@ -67,7 +67,7 @@ export const renderAdmin = async () => {
       if (enteredPassword !== "abcdefg") {
         if (messageDiv)
           messageDiv.textContent = "❌ Either Username Or Password is wrong!";
-        // return;
+        return;
       }
 
       // Password correct, render admin upload + delete form

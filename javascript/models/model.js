@@ -74,3 +74,30 @@ export const semesterAction = async (semester, adminOptions = false) => {
     throw new Error(err);
   }
 };
+
+const searchHelper = (array, searchKey) => {
+  let arr = [];
+  array.forEach((val, idx) => {
+    if (val.name.toLowerCase().includes(searchKey)) arr.push(val);
+  });
+
+  return arr;
+};
+
+export const searchThisThing = async (searchKey) => {
+  const arr = [];
+  await reloadData();
+  searchKey = searchKey.toLowerCase().trim();
+
+  allData.data.forEach((val, idx) => {
+    const arrayContent1 = searchHelper(val.note, searchKey);
+    const arrayContent2 = searchHelper(val.oldPapers, searchKey);
+    const arrayContent3 = searchHelper(val.syllabus, searchKey);
+
+    if (arrayContent1.length > 0) arr.push(arrayContent1);
+    if (arrayContent2.length > 0) arr.push(arrayContent2);
+    if (arrayContent3.length > 0) arr.push(arrayContent3);
+  });
+
+  return arr;
+};

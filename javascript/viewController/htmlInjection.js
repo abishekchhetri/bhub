@@ -1,11 +1,15 @@
 export const HOMEPAGE = `
+    <div class="search-wrapper">
+  <form id="search-form">
+    <input type="text" id="search-input" placeholder="Search..." />
+    <button type="submit">Search</button>
+  </form>
+</div>
+
     <p style="font-family: Arial, sans-serif; color: #1E3A8A; text-align: center; 
             background-color: #E0E7FF; padding: 20px; border-radius: 12px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 900px; margin: 40px auto; line-height: 1.6;">
     Welcome to <strong>BICTE HUB</strong> — a free and centralized platform designed for BICTE students to access academic resources effortlessly. 
-    Here you can find organized <strong>notes, syllabi, and past question papers</strong> for all 8 semesters. 
-    The platform ensures quick access to study materials, making learning and exam preparation more efficient. 
-    Admin users can securely upload, manage, and update content, so students always have the latest resources at their fingertips.
 </p>
 
     <div class="cardCollection">
