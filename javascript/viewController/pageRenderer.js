@@ -1,4 +1,8 @@
-import { reloadData, semesterAction } from "../models/model.js";
+import {
+  reloadData,
+  semesterAction,
+  searchThisThing,
+} from "../models/model.js";
 import {
   EXPORTDELETEFORM,
   HOMEPAGE,
@@ -7,6 +11,10 @@ import {
   RENDERTEAMS,
 } from "./htmlInjection.js";
 
+document.querySelector(".active").addEventListener("click", () => {
+  renderHomepage();
+});
+
 const mainBody = document.querySelector(".mainClass");
 const processA = false;
 
@@ -14,9 +22,50 @@ export const renderMessage = (message = "please wait.......") => {
   mainBody.innerHTML = ``;
   mainBody.innerHTML = `<div class='message'>${message}</div>`;
 };
-export const renderHomepage = () => {
+export const renderHomepage = async () => {
   const html = HOMEPAGE;
   mainBody.innerHTML = html;
+  // searchform initiation
+  const searchForm = document.getElementById("search-form");
+  const searchInput = document.getElementById("search-input");
+
+  searchForm.addEventListener("submit", async function (e) {
+    e.preventDefault(); // prevent page reload
+    const body = document.querySelector(".cardCollection");
+    const searchText = searchInput.value.trim();
+    if (searchText === "") return;
+    const result = await searchThisThing(searchText);
+    console.log(result);
+
+    body.classList.add("removeGrid");
+    body.innerHTML = `
+  <div class="search-results-wrapper">
+    <h2 class="search-title">Search Results</h2>
+    <div class="search-results">
+      ${result
+        .map(
+          (val) => `
+          <div class="search-result-card">
+            <div class="result-info">
+              <h3 class="result-name">${val[0].name}</h3>
+              <p class="result-meta">📘 ${val[0].type} &nbsp; | &nbsp; 🧩 Semester ${val[0].semester}</p>
+            </div>
+            <a 
+              href="${val[0].drivepath}" 
+              target="_blank" 
+              class="view-button">
+              open
+            </a>
+          </div>
+        `
+        )
+        .join("")}
+    </div>
+  </div>
+`;
+
+    if (result.length < 1) body.innerHTML = "NO SEARCH RESULTS ";
+  });
 };
 
 //LISTENER FOR HOMEPAGE
