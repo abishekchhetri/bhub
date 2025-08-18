@@ -272,6 +272,9 @@ pre {
 }
 
 /* === SEARCH BAR === */
+.removeGrid {
+  display: flex;
+}
 .search {
   display: flex;
   flex-wrap: wrap;
@@ -330,7 +333,7 @@ pre {
 
 /* SEARCH RESULTS */
 .search-results-wrapper {
-  max-width: 900px;
+  width: 100%;
   margin: 2em auto;
   padding: 1em;
   font-family: "Segoe UI", Tahoma, sans-serif;
@@ -360,6 +363,7 @@ pre {
   border: 1px solid #dadce0;
   border-radius: 8px;
   padding: 1em 1.5em;
+  font-size: 1.5px !important;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 

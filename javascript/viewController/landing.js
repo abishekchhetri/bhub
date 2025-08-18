@@ -43,6 +43,7 @@ searchForm.addEventListener("submit", async function (e) {
   const result = await searchThisThing(searchText);
   console.log(result);
 
+  body.classList.add("removeGrid");
   body.innerHTML = `
   <div class="search-results-wrapper">
     <h2 class="search-title">Search Results</h2>
@@ -59,7 +60,7 @@ searchForm.addEventListener("submit", async function (e) {
               href="${val[0].drivepath}" 
               target="_blank" 
               class="view-button">
-              View Note
+              open
             </a>
           </div>
         `
