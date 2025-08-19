@@ -46,6 +46,8 @@ export const semesterAction = async (semester, adminOptions = false) => {
 
     if (!adminOptions) {
       //if we only fetch semester data we return that data
+      console.log(allData.data[semester - 1]);
+
       return allData.data[semester - 1];
     }
 

@@ -1,5 +1,5 @@
 // config.js
 //place your json bin api key
 export const JSONBIN_API_KEY =
-  "$2a$10$xWsIomK6y0NmAwvZNW9peeqktXYrF2/fLHBfajktwD1geXd4AZKFi";
-export const BIN_ID = "689fdc3743b1c97be91f66ac"; // from JSONBin bin URL
+  "$2a$10$lHwaQf2KmUUqld6XhxiLC.PMXaHCPaN0o0r3m.mVVH.VBLM.qS2u.";
+export const BIN_ID = "68a4b24443b1c97be922a74d"; // from JSONBin bin URL

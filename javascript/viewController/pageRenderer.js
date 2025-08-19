@@ -149,6 +149,7 @@ const renderSemSpecific = async (data) => {
     return;
   } catch (err) {
     renderMessage("Please wait...");
+    console.log(err);
   }
 };
 

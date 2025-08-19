@@ -9,6 +9,8 @@ export const loadBlog = async function () {
       },
     });
     const blog = await data.json();
+    console.log(blog);
+
     console.log("server fetching!");
     return blog.record;
   } catch (err) {
