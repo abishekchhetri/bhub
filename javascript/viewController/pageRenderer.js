@@ -4,6 +4,7 @@ import {
   searchThisThing,
 } from "../models/model.js";
 import {
+  COURSES,
   EXPORTDELETEFORM,
   HOMEPAGE,
   LOGINBOX,
@@ -11,18 +12,26 @@ import {
   RENDERTEAMS,
 } from "./htmlInjection.js";
 
+export let WHOAMI = null;
+let flag = false;
+const mainBody = document.querySelector(".mainClass");
+
 document.querySelector(".active").addEventListener("click", () => {
   renderHomepage();
 });
 
-const mainBody = document.querySelector(".mainClass");
-const processA = false;
-
+//tHIS IS LIKE MISC LAYOUT TO GENERATE MESSAGE LIKE ERROR MESSAGE
 export const renderMessage = (message = "please wait.......") => {
   mainBody.innerHTML = ``;
   mainBody.innerHTML = `<div class='message'>${message}</div>`;
 };
+
+//THIS IS LIKE ENTRY POINT TO DO STUFFS IN WHOLE PAGE
 export const renderHomepage = async () => {
+  setTimeout(() => {
+    if (flag) alert("deletion successfull!");
+    flag = false;
+  }, 10);
   const html = HOMEPAGE;
   mainBody.innerHTML = html;
   // searchform initiation
@@ -35,6 +44,7 @@ export const renderHomepage = async () => {
     const searchText = searchInput.value.trim();
     if (searchText === "") return;
     let result = await searchThisThing(searchText);
+    searchInput.value = "";
     result = result.flat();
     //flat decompresses the result
 
@@ -65,6 +75,55 @@ export const renderHomepage = async () => {
   </div>
 `;
   });
+
+  document
+    .querySelector(".recently-uploaded")
+    .addEventListener("click", async () => {
+      const body = document.querySelector(".cardCollection");
+      let arr = await searchThisThing(null, true);
+      //sorting this array for recent dates:
+      arr = arr
+        .flat()
+        .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+
+      body.classList.add("removeGrid");
+      body.innerHTML = `
+  <div class="search-results-wrapper">
+    <h2 class="search-title">Recently uploaded</h2>
+    <div class="search-results">
+      ${arr
+        .map(
+          (val) => `
+          <div class="search-result-card">
+            <div class="result-info">
+            <p class="result-meta">${
+              new Date(val.uploadedAt).toISOString().split("T")[0]
+            }</p>
+            <h3 class="result-name" syle = "color:orange">${val.name}</h3>
+              <p class="result-meta">📘 ${
+                val.type
+              } &nbsp; | &nbsp; 🧩 Semester ${val.semester}</p>
+              </div>
+            <a 
+              href="${val.drivepath}" 
+              target="_blank" 
+              class="view-button">
+              open
+            </a>
+          </div>
+        `
+        )
+        .join("")}
+    </div>
+  </div>
+`;
+    });
+
+  document.querySelector(".language").addEventListener("click", () => {
+    const body = document.querySelector(".cardCollection");
+    body.style.display = "block";
+    body.innerHTML = COURSES;
+  });
 };
 
 //LISTENER FOR HOMEPAGE
@@ -89,7 +148,7 @@ const renderSemSpecific = async (data) => {
     renderDataList(dataSpecific[location]);
     return;
   } catch (err) {
-    renderMessage("some error occured");
+    renderMessage("Please wait...");
   }
 };
 
@@ -97,19 +156,62 @@ const renderSemSpecific = async (data) => {
 export const renderSemester = async () => {};
 
 //ADMIN
+const renderActions = async () => {
+  const html = EXPORTDELETEFORM;
+  mainBody.innerHTML = html;
+
+  // Upload listener
+  document.querySelector(".logo").style.color = "#fb5a5c";
+
+  const uploadForm = document.getElementById("uploadForm");
+  if (uploadForm) {
+    WHOAMI = "creator";
+    uploadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        type: document.getElementById("type").value,
+        name: document.getElementById("name").value,
+        drivepath: document.getElementById("drivepath").value,
+        year: document.getElementById("year").value,
+        semester: document.getElementById("semester").value,
+        uploadedBy: document.getElementById("uploadedBy").value,
+        uploadedAt: new Date().toISOString(),
+      };
+      await semesterAction(+data.semester, {
+        action: "upload",
+        type: data.type,
+        data: data,
+      });
+
+      await reloadData();
+
+      (document.getElementById("type").value = ""),
+        (document.getElementById("name").value = ""),
+        (document.getElementById("drivepath").value = ""),
+        (document.getElementById("year").value = ""),
+        (document.getElementById("semester").value = ""),
+        (document.getElementById("uploadedBy").value = ""),
+        (document.getElementById("uploadOutput").textContent =
+          "✅ DATA UPLOADED SUCCESSFULLY!\n" + JSON.stringify(data, null, 4));
+    });
+  }
+};
+
+//DEALS WITH CORE ADMIN FEATURES
 export const renderAdmin = async () => {
   try {
     // Render login form first
+
     const adminLogin = LOGINBOX;
-
     mainBody.innerHTML = adminLogin;
+    const passwordInput = document.getElementById("password");
+    const messageDiv = document.getElementById("message");
 
-    document.querySelector(".verifyL").addEventListener("click", () => {
-      const passwordInput = document.getElementById("password");
-      const messageDiv = document.getElementById("message");
-
+    setTimeout(() => {
+      if (WHOAMI === "creator") renderActions();
+    }, 2);
+    document.querySelector(".verifyL").addEventListener("click", async () => {
       if (!passwordInput) return;
-
       const enteredPassword = passwordInput.value;
 
       if (enteredPassword !== "abcdefg") {
@@ -119,69 +221,7 @@ export const renderAdmin = async () => {
       }
 
       // Password correct, render admin upload + delete form
-      const html = EXPORTDELETEFORM;
-      mainBody.innerHTML = html;
-
-      // Upload listener
-      const uploadForm = document.getElementById("uploadForm");
-      if (uploadForm) {
-        uploadForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const data = {
-            type: document.getElementById("type").value,
-            name: document.getElementById("name").value,
-            drivepath: document.getElementById("drivepath").value,
-            year: document.getElementById("year").value,
-            semester: document.getElementById("semester").value,
-            uploadedBy: document.getElementById("uploadedBy").value,
-            uploadedAt: new Date().toISOString(),
-          };
-          await semesterAction(+data.semester, {
-            action: "upload",
-            type: data.type,
-            data: data,
-          });
-
-          await reloadData();
-
-          (document.getElementById("type").value = ""),
-            (document.getElementById("name").value = ""),
-            (document.getElementById("drivepath").value = ""),
-            (document.getElementById("year").value = ""),
-            (document.getElementById("semester").value = ""),
-            (document.getElementById("uploadedBy").value = ""),
-            (document.getElementById("uploadOutput").textContent =
-              "✅ DATA UPLOADED SUCCESSFULLY!\n" +
-              JSON.stringify(data, null, 4));
-        });
-      }
-
-      // Delete listener
-      const deleteForm = document.getElementById("deleteForm");
-      if (deleteForm) {
-        deleteForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const deleteType = document.getElementById("deleteType").value;
-          const deleteSemester =
-            +document.getElementById("deleteSemester").value;
-          const deleteKey = +document.getElementById("deleteKey").value;
-
-          await semesterAction(deleteSemester, {
-            action: "delete",
-            type: deleteType,
-            deleteKey: deleteKey,
-          });
-
-          await reloadData();
-
-          document.getElementById("deleteType").value = "";
-          document.getElementById("deleteSemester").value = "";
-          document.getElementById("deleteKey").value = "";
-          document.getElementById(
-            "deleteOutput"
-          ).textContent = `✅ Deleted ${deleteType} at index ${deleteKey} in semester ${deleteSemester}`;
-        });
-      }
+      await renderActions();
     });
   } catch (err) {
     renderMessage(err);
@@ -229,6 +269,11 @@ function renderDataList(dataArray) {
                   <span>📂 ${item.type}</span>
                   <span>🎓 Sem: ${item.semester}</span>
                   <span>📅 ${item.year}</span>
+                  ${
+                    WHOAMI === "creator"
+                      ? `<button class="delete" data-id=${idx}>🗑️ DELETE</button>`
+                      : ""
+                  }
                 </div>
               </div>
             </div>
@@ -237,14 +282,35 @@ function renderDataList(dataArray) {
         .join("")}
     </div>
   `;
+
+  const delBtn = document.querySelector(".delete");
+  if (delBtn)
+    delBtn.addEventListener("click", async () => {
+      try {
+        const data = location.hash.slice(1).split("-");
+        const idx = +delBtn.getAttribute("data-id") + 1;
+        const [type, semester] = data;
+        await semesterAction(semester, {
+          action: "delete",
+          type: type,
+          deleteKey: idx,
+        });
+        await reloadData();
+        flag = true;
+        renderHomepage();
+      } catch (err) {
+        console.log(err);
+      }
+    });
 }
 
-// Example usage:
+// ABOUT SECTION OF SITE JS
 export const renderAbout = () => {
   mainBody.innerHTML = ``;
   mainBody.innerHTML = RENDERABOUT;
 };
 
+//TEAMS SECTION RENDERING
 export const renderTeams = () => {
   mainBody.innerHTML = "";
   mainBody.innerHTML = RENDERTEAMS;

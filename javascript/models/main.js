@@ -10,7 +10,6 @@ export const loadBlog = async function () {
     });
     const blog = await data.json();
     console.log("server fetching!");
-
     return blog.record;
   } catch (err) {
     throw new Error(err);

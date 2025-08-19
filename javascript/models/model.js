@@ -75,29 +75,66 @@ export const semesterAction = async (semester, adminOptions = false) => {
   }
 };
 
-const searchHelper = (array, searchKey) => {
+const searchHelper = (array, searchKey, sortSevenDate = false) => {
   let arr = [];
-  array.forEach((val, idx) => {
-    if (val.name.toLowerCase().includes(searchKey)) arr.push(val);
-  });
+
+  if (!sortSevenDate) {
+    array.forEach((val, idx) => {
+      if (val.name.toLowerCase().includes(searchKey)) arr.push(val);
+    });
+  } else {
+    const now = new Date();
+    const sevenWeeksAgo = new Date();
+    sevenWeeksAgo.setDate(now.getDate() - 7 * 7); // 7 weeks * 7 days
+
+    array.forEach((val) => {
+      const uploadedDate = new Date(val.uploadedAt);
+
+      if (uploadedDate >= sevenWeeksAgo && uploadedDate <= now) {
+        arr.push(val);
+      }
+    });
+  }
 
   return arr;
 };
 
-export const searchThisThing = async (searchKey) => {
+export const searchThisThing = async (searchKey, sortKey = false) => {
   const arr = [];
   await reloadData();
-  searchKey = searchKey.toLowerCase().trim();
 
-  allData.data.forEach((val, idx) => {
-    const arrayContent1 = searchHelper(val.note, searchKey);
-    const arrayContent2 = searchHelper(val.oldPapers, searchKey);
-    const arrayContent3 = searchHelper(val.syllabus, searchKey);
+  if (!sortKey) {
+    searchKey = searchKey.toLowerCase().trim();
+    allData.data.forEach((val, idx) => {
+      const arrayContent1 = searchHelper(val.note, searchKey);
+      const arrayContent2 = searchHelper(val.oldPapers, searchKey);
+      const arrayContent3 = searchHelper(val.syllabus, searchKey);
 
-    if (arrayContent1.length > 0) arr.push(arrayContent1);
-    if (arrayContent2.length > 0) arr.push(arrayContent2);
-    if (arrayContent3.length > 0) arr.push(arrayContent3);
-  });
+      if (arrayContent1.length > 0) arr.push(arrayContent1);
+      if (arrayContent2.length > 0) arr.push(arrayContent2);
+      if (arrayContent3.length > 0) arr.push(arrayContent3);
+    });
+  } else {
+    allData.data.forEach((val, idx) => {
+      const arrayContent1 = searchHelper(val.note, searchKey, true);
+      const arrayContent2 = searchHelper(val.oldPapers, searchKey, true);
+      const arrayContent3 = searchHelper(val.syllabus, searchKey, true);
+
+      if (arrayContent1.length > 0) arr.push(arrayContent1);
+      if (arrayContent2.length > 0) arr.push(arrayContent2);
+      if (arrayContent3.length > 0) arr.push(arrayContent3);
+    });
+  }
 
   return arr;
 };
+
+/*
+await semesterAction(deleteSemester, {
+            action: "delete",
+            type: deleteType,
+            deleteKey: deleteKey,
+          });
+
+
+*/
