@@ -230,9 +230,9 @@ pre {
 .searchBox {
   width: 100% !important;
   height: 100% !important;
-  border-radius: 29px 0px 45px 0px;
+  /* border-radius: 29px 0px 45px 0px;
   -webkit-border-radius: 29px 0px 45px 0px;
-  -moz-border-radius: 29px 0px 45px 0px;
+  -moz-border-radius: 29px 0px 45px 0px; */
 }
 #search-input {
   /* width: 100% !important; */

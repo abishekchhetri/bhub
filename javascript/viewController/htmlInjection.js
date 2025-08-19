@@ -1,3 +1,5 @@
+//continuous deployment
+
 export const HOMEPAGE = `
     <div class="search-wrapper">
   <form id="search-form">
