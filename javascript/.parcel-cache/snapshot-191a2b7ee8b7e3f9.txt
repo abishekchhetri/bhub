@@ -1,5 +1,5 @@
 3514
-65/home/kali/Desktop/bHub/bhub/javascript/viewController/landing.js1755525666211914976 0
+65/home/kali/Desktop/bHub/bhub/javascript/viewController/landing.js1755527710667870882 0
 50/home/kali/Desktop/bHub/bhub/javascript/.gitignore1755503928796079777 0
 52/home/kali/Desktop/bHub/bhub/javascript/package.json1755519179968931311 0
 72/home/kali/Desktop/bHub/bhub/javascript/node_modules/escalade/index.d.ts1755504939470511938 0
@@ -97,7 +97,7 @@
 72/home/kali/Desktop/bHub/bhub/javascript/node_modules/fill-range/index.js1755504939334512688 0
 72/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/dict/dict2.txt1755504940074508611 0
 71/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/dict/dict.txt1755504940070508633 0
-70/home/kali/Desktop/bHub/bhub/javascript/viewController/pageRenderer.js1755514216273376012 0
+70/home/kali/Desktop/bHub/bhub/javascript/viewController/pageRenderer.js1755607372275410833 0
 62/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/dict1755504940070508633 1
 65/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/LICENSE1755504939618511123 0
 71/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/node-index.js1755504940022508897 0
@@ -796,7 +796,7 @@
 86/home/kali/Desktop/bHub/bhub/javascript/node_modules/lightningcss/node/targets.js.flow1755504939542511542 0
 76/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/packager-js/lib1755504939618511123 1
 91/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/runtime-js/src/helpers/browser1755504939730510506 1
-54/home/kali/Desktop/bHub/bhub/javascript/models/main.js1755505348420258644 0
+54/home/kali/Desktop/bHub/bhub/javascript/models/main.js1755606313773769834 0
 87/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/runtime-service-worker/lib1755504939338512666 1
 79/home/kali/Desktop/bHub/bhub/javascript/node_modules/lightningcss/node/flags.js1755504939574511365 0
 71/home/kali/Desktop/bHub/bhub/javascript/node_modules/micromatch/LICENSE1755504939298512886 0
@@ -978,7 +978,7 @@
 96/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/sharedworkers.js1755504940522506142 0
 102/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/dependencies/lmdb/libraries/liblmdb/Makefile1755504939642510991 0
 86/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/dist/lib/statuses.js1755504940534506076 0
-67/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.2f80032c.js1755525666275915114 0
+67/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.2f80032c.js1755607600885187768 0
 92/home/kali/Desktop/bHub/bhub/javascript/node_modules/@swc/helpers/esm/_async_to_generator.js1755504939830509955 0
 75/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/runtime-js/lib1755504939674510814 1
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/regions/CZ.js1755504940106508434 0
@@ -1323,7 +1323,7 @@
 89/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/transformer-posthtml/LICENSE1755504939310512820 0
 100/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/transformer-json/src/JSONTransformer.js1755504939402512313 0
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/regions/SE.js1755504940514506186 0
-68/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.a4e33057.css1755525244399218532 0
+68/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.a4e33057.css1755607600889187729 0
 75/home/kali/Desktop/bHub/bhub/javascript/node_modules/semver/ranges/valid.js1755504939726510528 0
 80/home/kali/Desktop/bHub/bhub/javascript/node_modules/type-fest/source/basic.d.ts1755504939450512048 0
 100/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/custom-elementsv1.js1755504940102508456 0
@@ -1532,7 +1532,7 @@
 113/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/mdn-css-unicode-bidi-plaintext.js1755504940354507067 0
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/regions/NP.js1755504940454506516 0
 78/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/codeframe/LICENSE1755504939322512754 0
-50/home/kali/Desktop/bHub/bhub/javascript/index.html1755517231231281620 0
+50/home/kali/Desktop/bHub/bhub/javascript/index.html1755582713717967749 0
 103/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/document-execcommand.js1755504940126508324 0
 72/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/dist/index.cjs1755504939922509448 0
 97/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/workers/lib/process/ProcessWorker.js1755504939670510836 0
@@ -1550,7 +1550,7 @@
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/@swc/helpers/cjs/_ts_values.cjs1755504939786510198 0
 93/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/web-serial.js1755504940614505635 0
 87/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/rust-linux-x64-gnu/LICENSE1755504939322512754 0
-55/home/kali/Desktop/bHub/bhub/javascript/dist/index.html1755517231355281879 0
+55/home/kali/Desktop/bHub/bhub/javascript/dist/index.html1755607600885187768 0
 85/home/kali/Desktop/bHub/bhub/javascript/node_modules/ordered-binary/.idea/modules.xml1755504939570511387 0
 109/home/kali/Desktop/bHub/bhub/javascript/node_modules/@swc/helpers/_/_initializer_define_property/package.json1755504940182508016 0
 97/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/css-appearance.js1755504939918509470 0
@@ -1587,7 +1587,7 @@
 90/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/colr-v1.js1755504939870509734 0
 97/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/dependencies/v8/v8-fast-api-calls-v16.h1755504940002509007 0
 80/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/transformer-css/lib1755504939338512666 1
-72/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.a4e33057.css.map1755525244403218538 0
+72/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.a4e33057.css.map1755607600909187537 0
 102/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/es6-string-includes.js1755504940170508082 0
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/regions/YE.js1755504940634505525 0
 79/home/kali/Desktop/bHub/bhub/javascript/node_modules/ordered-binary/.nyc_output1755504939450512048 1
@@ -1865,7 +1865,7 @@
 86/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/mp3.js1755504940394506848 0
 98/home/kali/Desktop/bHub/bhub/javascript/node_modules/@swc/helpers/_/_class_call_check/package.json1755504940034508831 0
 85/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/source-map/dist/types.js1755504939606511189 0
-50/home/kali/Desktop/bHub/bhub/javascript/styles.css1755525485579563943 0
+50/home/kali/Desktop/bHub/bhub/javascript/styles.css1755607585601335346 0
 102/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/error-overlay/src/utils/isInternalFile.js1755504939610511167 0
 79/home/kali/Desktop/bHub/bhub/javascript/node_modules/msgpackr/dist/node.cjs.map1755504939830509955 0
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/regions/MH.js1755504940378506936 0
@@ -1994,7 +1994,7 @@
 74/home/kali/Desktop/bHub/bhub/javascript/node_modules/lmdb/dependencies/lz41755504939610511167 1
 80/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/transformer-raw/src1755504939374512467 1
 93/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/use-strict.js1755504940578505834 0
-71/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.2f80032c.js.map1755525666275915114 0
+71/home/kali/Desktop/bHub/bhub/javascript/dist/javascript.2f80032c.js.map1755607600905187574 0
 101/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/runtime-js/src/helpers/node/js-loader.js1755504939654510924 0
 107/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/input-autocomplete-onoff.js1755504940278507487 0
 104/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/extended-system-fonts.js1755504940174508060 0
@@ -2260,7 +2260,7 @@
 74/home/kali/Desktop/bHub/bhub/javascript/node_modules/msgpackr/dist/test.js1755504939710510616 0
 97/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/xml-serializer.js1755504940634505525 0
 95/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/transformer-image/lib/loadSharp.js1755504939414512247 0
-39/home/kali/Desktop/bHub/bhub/javascript1755505335996327099 1
+39/home/kali/Desktop/bHub/bhub/javascript1755602736910409094 1
 81/home/kali/Desktop/bHub/bhub/javascript/node_modules/lightningcss/node/index.d.ts1755504939682510771 0
 81/home/kali/Desktop/bHub/bhub/javascript/node_modules/ordered-binary/tests/test.js1755504939442512094 0
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/profiler/lib/Trace.d.ts1755504939550511497 0
@@ -2286,7 +2286,7 @@
 91/home/kali/Desktop/bHub/bhub/javascript/node_modules/type-fest/source/conditional-keys.d.ts1755504939498511784 0
 96/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/core/lib/TargetDescriptor.schema.js1755504940050508744 0
 92/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/clipboard.js1755504939862509778 0
-44/home/kali/Desktop/bHub/bhub/javascript/dist1755525666275915114 1
+44/home/kali/Desktop/bHub/bhub/javascript/dist1755607600913187497 1
 88/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/asmjs.js1755504939726510528 0
 76/home/kali/Desktop/bHub/bhub/javascript/node_modules/node-releases/README.md1755504939470511938 0
 100/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/sharedarraybuffer.js1755504940522506142 0
@@ -2323,7 +2323,7 @@
 97/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/scrollintoview.js1755504940514506186 0
 123/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/core/test/fixtures/config-extends-not-found/.parcelrc-multiple1755504939658510902 0
 84/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/regions/NO.js1755504940454506516 0
-55/home/kali/Desktop/bHub/bhub/javascript/models/model.js1755523740632768060 0
+55/home/kali/Desktop/bHub/bhub/javascript/models/model.js1755582649690150409 0
 103/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/js-regexp-lookbehind.js1755504940294507399 0
 106/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/comparedocumentposition.js1755504939874509713 0
 79/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/graph/package.json1755504939674510814 0
@@ -2588,7 +2588,7 @@
 114/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/package-manager/test/fixtures/packages/a/package.json1755504939770510285 0
 89/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/workers/src/web/WebWorker.js1755504939730510506 0
 88/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/workers/src/web/WebChild.js1755504939730510506 0
-71/home/kali/Desktop/bHub/bhub/javascript/viewController/htmlInjection.js1755517431035790966 0
+71/home/kali/Desktop/bHub/bhub/javascript/viewController/htmlInjection.js1755606385009054361 0
 98/home/kali/Desktop/bHub/bhub/javascript/node_modules/caniuse-lite/data/features/element-closest.js1755504940134508280 0
 91/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/utils/src/isDirectoryInside.js1755504939854509822 0
 73/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/workers/test1755504939746510419 1
@@ -3140,7 +3140,7 @@
 109/home/kali/Desktop/bHub/bhub/javascript/node_modules/msgpackr-extract/node_modules/detect-libc/lib/process.js1755504939430512159 0
 80/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/graph/src/BitSet.js1755504939570511387 0
 79/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/graph/src/Graph.js1755504939614511145 0
-49/home/kali/Desktop/bHub/bhub/javascript/config.js1755513438732386895 0
+49/home/kali/Desktop/bHub/bhub/javascript/config.js1755577174236598518 0
 86/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/graph/src/ContentGraph.js1755504939582511322 0
 78/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/rust/lib/index.js1755504939454512026 0
 79/home/kali/Desktop/bHub/bhub/javascript/node_modules/@parcel/graph/src/types.js1755504939666510858 0
