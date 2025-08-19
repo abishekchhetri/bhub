@@ -34,8 +34,9 @@ export const renderHomepage = async () => {
     const body = document.querySelector(".cardCollection");
     const searchText = searchInput.value.trim();
     if (searchText === "") return;
-    const result = await searchThisThing(searchText);
-    console.log(result);
+    let result = await searchThisThing(searchText);
+    result = result.flat();
+    //flat decompresses the result
 
     body.classList.add("removeGrid");
     body.innerHTML = `
@@ -47,11 +48,11 @@ export const renderHomepage = async () => {
           (val) => `
           <div class="search-result-card">
             <div class="result-info">
-              <h3 class="result-name">${val[0].name}</h3>
-              <p class="result-meta">📘 ${val[0].type} &nbsp; | &nbsp; 🧩 Semester ${val[0].semester}</p>
+              <h3 class="result-name">${val.name}</h3>
+              <p class="result-meta">📘 ${val.type} &nbsp; | &nbsp; 🧩 Semester ${val.semester}</p>
             </div>
             <a 
-              href="${val[0].drivepath}" 
+              href="${val.drivepath}" 
               target="_blank" 
               class="view-button">
               open
@@ -63,8 +64,6 @@ export const renderHomepage = async () => {
     </div>
   </div>
 `;
-
-    if (result.length < 1) body.innerHTML = "NO SEARCH RESULTS ";
   });
 };
 
@@ -201,38 +200,43 @@ function renderDataList(dataArray) {
       "<div class='message'>Sorry but admin has not uploaded any data!</div>";
     return;
   }
-  mainBody.innerHTML = sortedData
-    .map((item, idx) => {
-      // Convert Google Drive share link to embed link
-      let embedLink = item.drivepath;
-      if (embedLink.includes("view")) {
-        embedLink = embedLink.replace("view", "preview");
-      }
 
-      return `
+  mainBody.innerHTML = `
+    <div class="gridContainer">
+      ${sortedData
+        .map((item, idx) => {
+          // Convert Google Drive share link to embed link
+          let embedLink = item.drivepath;
+          if (embedLink.includes("view")) {
+            embedLink = embedLink.replace("view", "preview");
+          }
+
+          return `
             <div class="data-card">
-                <h3>${item.name}</h3>
-                <div class="data-preview">
-                    <iframe src="${embedLink}" allow="autoplay"></iframe>
+              <h3>${item.name}</h3>
+              <div class="data-preview">
+                <iframe src="${embedLink}" allow="autoplay"></iframe>
+              </div>
+              <div class="data-content">
+                <strong>${item.name}</strong>
+                <span style="color:purple">Showing ${idx + 1} of ${
+            sortedData.length
+          } results.</span>
+                <div class="data-meta">
+                  <a href="${
+                    item.drivepath
+                  }" target="_blank" class="button">Open File</a>
+                  <span>📂 ${item.type}</span>
+                  <span>🎓 Sem: ${item.semester}</span>
+                  <span>📅 ${item.year}</span>
                 </div>
-                <div class="data-content">
-                    <strong>${item.name}</strong>
-                    <span style="color:purple">           Showing ${
-                      idx + 1
-                    } of ${sortedData.length} results.</span>
-                    <div class="data-meta">
-                        <a href="${
-                          item.drivepath
-                        }" target="_blank" class="button">Open File</a>
-                        <span>📂 ${item.type}</span>
-                        <span>🎓 Sem: ${item.semester}</span>
-                        <span>📅 ${item.year}</span>
-                    </div>
-                </div>
+              </div>
             </div>
-        `;
-    })
-    .join("");
+          `;
+        })
+        .join("")}
+    </div>
+  `;
 }
 
 // Example usage:

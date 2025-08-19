@@ -7,11 +7,16 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9fafb;
+  background: #c1d8ef66;
   padding: 1.25rem;
   color: #333;
 }
-
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  justify-items: start;
+}
 /* === NAVIGATION BAR === */
 .navbar {
   z-index: 999;
@@ -89,13 +94,15 @@ body {
   .navbar {
     font-size: small;
   }
+  .gridContainer {
+    grid-template-columns: 1fr;
+    padding-right: 3rem;
+  }
 }
 
 /* === PAGE LAYOUT === */
 .mainClass {
   margin-top: 5rem;
-  display: grid;
-  grid-template-columns: 1fr;
   justify-items: center;
   gap: 0.9375rem;
 }
