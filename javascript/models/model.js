@@ -27,6 +27,7 @@ export let allData;
 export const reloadData = async () => {
   try {
     allData = await loadBlog();
+    isLoaded = true;
   } catch (err) {
     throw new Error(err);
   }
