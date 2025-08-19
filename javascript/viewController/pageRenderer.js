@@ -221,6 +221,9 @@ function renderDataList(dataArray) {
                       idx + 1
                     } of ${sortedData.length} results.</span>
                     <div class="data-meta">
+                        <a href="${
+                          item.drivepath
+                        }" target="_blank" class="button">Open File</a>
                         <span>📂 ${item.type}</span>
                         <span>🎓 Sem: ${item.semester}</span>
                         <span>📅 ${item.year}</span>
